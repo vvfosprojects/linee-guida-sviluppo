@@ -63,7 +63,7 @@ Considerando che i linguaggi di sviluppo utilizzati hanno un forte impatto sui p
 Il backend deve essere realizzato conformemente al paradigma della programmazione orientata agli oggetti (OOP). I linguaggi da utilizzare sono i seguenti.
 
 * Java 8+ su application server Tomcat o WildFly
-* C# netcore
+* C# .NET Core 2.2+
 
 ### Frontend
 
