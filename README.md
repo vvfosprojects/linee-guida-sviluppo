@@ -144,7 +144,3 @@ La stessa applicazione deve rendere disponibili, con discrezione ma contestualme
 ## Assistenza alla procedura
 
 La messa in esercizio di una procedura, richiede la predisposizione ex-ante di uno sportello di assistenza applicativa, di solito erogata preferibilmente mediante i canali mail, con la possibilità di un canale telefonico in caso di elevata urgenza della problematica riscontrata e della criticità della procedura coinvolta. Tale esigenza va analizzata fin dalle prime fasi di sviluppo della procedura. In prima istanza bisogna puntare a limitare al massimo, con una buona progettazione, l'esigenza dell'utente di ricorrere agli sportelli di assistenza. In ogni caso deve comunque essere assicurata la disponibilità di uno sportello competente a risolvere efficacemente le problematiche di natura applicativa.
-
-## Assistenza allo sviluppo
-
-Il rispetto completo delle direttive di sopra impartite, richiede che i singoli componenti del team di sviluppo siano dotati di competenze specialistiche e di significativa esperienza nello sviluppo software. Per questo motivo, l'Ufficio per i Servizi Informatici resta costantemente a disposizione per fornire tutto il supporto necessario sin dalle prime fasi di analisi del contesto, durante la progettazione dell'architettura applicativa e di sistema, lo sviluppo applicativo, l'installazione, la conduzione, la manutenzione.
