@@ -46,7 +46,7 @@ Nella realizzazione di funzionalità di reportistica applicativa, piuttosto che 
 
 Le applicazioni devono essere nativamente cloud-enabled. In particolare devono essere rispettati i seguenti requisiti.
 
-* La procedura non deve conservare stato nella memoria volatile degli application server; in particolare non devono essere memorizzate informazioni sul contesto d'utente al fine di scongiurarne la perdita di dati in caso di riavvio degli application server oppure di aggiornamento applicativo.
+* La procedura non deve conservare stato nella memoria volatile degli application server; in particolare non devono essere memorizzate informazioni sul contesto d'utente al fine di scongiurarne la perdita in caso di riavvio degli application server oppure di aggiornamento applicativo.
 * La procedura non deve salvare informazioni sul file-system locale.
 * La procedura può salvare logs applicativi su file-system locale, ma deve essere all'occorrenza predisposta ad indirizzare questi logs verso un apposito log-server.
 
