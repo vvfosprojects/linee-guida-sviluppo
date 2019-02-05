@@ -2,7 +2,7 @@
 
 ## Introduzione
 
-Scopo di questa circolare è la diffusione di una serie di linee guida e metodologie, in allegato, a cui ispirarsi sistematicamente nell'ambito di qualsiasi attività di produzione di sistemi software condotte nell'ambito del Corpo Nazionale dei Vigili del Fuoco, che conferiscano soddisfacenti livelli di qualità, tra i quali in particolare: correttezza, efficienza, robustezza, sicurezza, uniformità ed integrabilità nelle infrastrutture istituzionali, manutenibilità, estensibilità, documentabilità, sostenibilità, ottemperanza alle normative vigenti in tema di sicurezza informatica.
+Scopo di questa circolare è la diffusione di una serie di linee guida e metodologie, in allegato, a cui attenersi sistematicamente nell'ambito di qualsiasi attività di produzione di sistemi software condotte nell'ambito del Corpo Nazionale dei Vigili del Fuoco, che conferiscano soddisfacenti livelli di qualità, tra i quali in particolare: correttezza, efficienza, robustezza, sicurezza, uniformità ed integrabilità nelle infrastrutture istituzionali, manutenibilità, estensibilità, documentabilità, sostenibilità, ottemperanza alle normative vigenti in tema di sicurezza informatica.
 
 ## Architetture applicativa e di sistema
 
