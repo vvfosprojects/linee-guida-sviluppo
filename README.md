@@ -12,7 +12,6 @@ Le procedure sono sviluppate in tecnologia Web e sono pertanto fruibili, senza l
 * Google Chrome
 * Opera
 * Safari
-* Internet Explorer 11+.
 
 Vi può essere eventualmente la possibilità di avere un front-end basato su terminali mobili (per es. Android, iOS).
 
