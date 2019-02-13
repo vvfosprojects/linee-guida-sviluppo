@@ -19,9 +19,9 @@ Vi può essere eventualmente la possibilità di avere un front-end basato su ter
 
 ### Integrazione applicativa
 
-Deve essere sistematicamente realizzata l'integrazione con i sistemi istituzionali in tutti i casi di accesso a dati di competenza delle altre procedure; ciò vale in special modo per l'autenticazione dell'utente e per l'accesso alle anagrafiche dipartimentali (personale, mezzi, sedi di servizio, anagrafica territorio, ecc.). Detta integrazione è basata su servizi web, secondo il paradigma delle Service-Oriented Architectures (SOA). Se non esistenti, va concordato lo sviluppo dei web services utili ad una corretta integrazione applicativa.
+Deve essere sistematicamente realizzata l'integrazione con i sistemi istituzionali in tutti i casi di accesso a dati di competenza delle altre procedure; ciò vale in special modo per l'autenticazione dell'utente e per l'accesso alle anagrafiche dipartimentali (personale, mezzi, sedi di servizio, anagrafica territorio, ecc.). Detta integrazione è basata su servizi web, secondo il paradigma delle Service-Oriented Architectures (SOA). Se non esistenti, va concordato lo sviluppo dei web services utili ad una corretta integrazione applicativa. L'accesso ai servizi di integrazione deve essere incapsulato in apposite classi, al fine di variarne agevolmente l'implementazione a fronte di revisioni delle architetture applicative dipartimentali.
 
-Specularmente, la procedura informatica deve esporre i servizi web utili alla condivisione del dato di sua competenza.
+Specularmente, la procedura informatica deve esporre i servizi web utili alla condivisione del dato di sua competenza con le altre procedure dipartimentali.
 
 In entrambi i casi, i servizi web sono realizzati a _grana fine_, nel senso che deve essere possibile accedere a dati elementari e deve essere evitata la modalità di esportazione massiva di dati a beneficio di un'altra applicazione. Per questo motivo, i singoli servizi web devono essere realizzati secondo stringenti requisiti di efficienza (non più di pochi millisecondi per la risposta corrispondente ad ogni chiamata), eventualmente facendo intenso uso di strategie di caching dei dati.
 
