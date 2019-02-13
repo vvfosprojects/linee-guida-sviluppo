@@ -129,7 +129,9 @@ Ogni procedura deve essere corredata dal relativo documento di procedura, second
 * la natura e l'entità del traffico generato verso i database server, unitamente al trend di crescita della mole di dati archiviata;
 * la descrizione dettagliata di eventuali, inevitabili, procedure schedulate che coinvolgano la gestione massiva di informazioni;
 * la descrizione dettagliata delle procedure di compilazione del codice e deployment sui server di pre-esercizio ed esercizio, con le relative procedure per il testing delle funzionalità;
-* le caratteristiche delle procedure di backup da predisporre a fini di disaster-recovery.
+* le caratteristiche delle procedure di backup da predisporre a fini di disaster-recovery;
+* i task da configurare per il monitoraggio mediante piattaforma Nagios del corretto funzionamento di tutti i componenti dell'applicativo;
+* le modalità di deploy automatizzato dell'applicativo, da configurare nella continuous delivery chain del CED dipartimentale.
 
 La documentazione dettagliata del codice deve essere inoltre considerata parte integrante del progetto software, senza la quale sono seriamente compromesse le caratteristiche di correttezza e manutenibilità della procedura. È fortemente auspicato un approccio alla documentazione _in linea_, dove i singoli moduli software vengono realizzati direttamente insieme alla relativa documentazione, contestualizzate nello stesso frammento di codice. Ciò anche al fine di abilitare metodologie automatizzate di produzione della documentazione (per es. JavaDoc) e sistemi automatici di rilevazione di errori o obsolescenza nella documentazione.
 
