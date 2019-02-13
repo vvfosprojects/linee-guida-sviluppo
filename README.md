@@ -53,6 +53,9 @@ Le applicazioni devono essere nativamente cloud-enabled. In particolare devono e
 
 L'ambiente eterogeneo, altamente specialistico e fortemente dinamico che si configura nel CNVVF, impone l'utilizzo di metodologie agili per lo sviluppo applicativo. Si incoraggiano pertanto le tecniche di sviluppo [SOLID](https://en.wikipedia.org/wiki/SOLID), l'utilizzo del Test Driven Development, l'uso di sistemi di versionamento del codice evoluti, la continuous integration.
 
+### Continuous integration
+Direttamente dalle prime fasi dello sviluppo applicativo, va definita una catena di continuous integration & delivery che attivi il deploy dell'applicativo in corrispondenza di commit su specifici branch del repository git utilizzato. Si incoraggia l'uso del git-flow, con la possibilità di definire, oltre ad un branch master, anche i branch test e demo per il deploy automatizzato sulle rispettive infrastrutture. L'infrastruttura di test deve essere considerata utile per svolgere un definitivo test di integrazione dell'applicativo prima di un rilascio in esercizio. L'infrastruttura demo è a tutti gli effetti un'infrastruttura di esercizio, dotata di requisiti di disponibilità analoghi all'infrastruttura di esercizio, che viene utilizzata principalmente a scopo dimostrativo delle funzionalità dell'applicativo e per finalità didattiche.
+
 ## Linguaggi di sviluppo
 
 Considerando che i linguaggi di sviluppo utilizzati hanno un forte impatto sui processi di manutenzione correttiva ed evolutiva, è necessario evitare la proliferazione di diversi linguaggi di sviluppo, convergendo su un ristretto sottoinsieme delle numerose tecnologie software oggi disponibili. Si auspica pertanto l'utilizzo dei seguenti mix tecnologici.
