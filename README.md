@@ -115,6 +115,18 @@ Deve essere evitata se possibile la riscrittura di algoritmi già disponibili in
 
 Tutto il codice _morto_, ovvero non utilizzato, deve essere rimosso poiché potrebbe portare a confusione od essere considerato mantenuto ed erroneamente reintegrato senza i necessari controlli.
 
+## Modello autorizzativo
+Le applicazioni utilizzate sul territorio devono considerare la strutturazione gerarchica del CNVVF, articolata su 4 livelli:
+
+* Livello radice
+* Direzioni Regionali VVF
+* Comandi VVF
+* Distaccamenti VVF
+
+Il modello autorizzativo deve contemplare il ruolo di _gestore dei permessi_. Tale ruolo deve poter essere assegnato limitatamente ad un'unità operativa tra quelle sopra elencate. L'assegnazione può avere o meno l'attributo di ricorsività. Grazie a questo sistema è possibile abilitare un modello di gestione delle autorizzazioni distribuito, secondo cui un _gestore dei permessi_ nominato a livello radice può abilitare (e tenere aggiornati nel tempo) i _gestori dei permsssi_ a livello di Direzioni Regionali VVF. Questi, a loro volta possono nominare (ed aggiornare) i _gestori dei permessi_ a livello di Comando VVF.
+
+Il principale vantaggio di un tale modello consiste nel non dover deputare un'unità operativa centralizzata alla gestione globale di tutti i permessi sul territorio e, soprattutto, al suo aggiornamento nel tempo in conseguenza dei cambi di mansione e del turn-over del personale.
+
 ## Documentazione applicativa
 
 Ogni procedura deve essere corredata dal relativo documento di procedura, secondo il modello realizzato dalla DCRLS/USI e disponibile all'indirizzo [http://intranet.dipvvf.it/linee-guida-sviluppo-applicativo](http://intranet.dipvvf.it/linee-guida-sviluppo-applicativo). Tale documento, in particolare, richiede di dettagliare i seguenti aspetti.
