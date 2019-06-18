@@ -45,13 +45,15 @@ Nella realizzazione di funzionalità di reportistica applicativa, piuttosto che 
 
 L'ambiente eterogeneo, altamente specialistico e fortemente dinamico che si configura nel CNVVF, impone l'utilizzo di metodologie agili per lo sviluppo applicativo. Si incoraggiano pertanto le tecniche di sviluppo [SOLID](https://en.wikipedia.org/wiki/SOLID), l'utilizzo del [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development), l'uso di sistemi di versionamento del codice evoluti, la continuous integration.
 
-### Cloud-enabling
+## Cloud-enabling
 
 Le applicazioni devono essere nativamente cloud-enabled. In particolare devono essere rispettati i seguenti requisiti.
 
 * La procedura non deve conservare stato nella memoria volatile degli application server; in particolare non devono essere memorizzate informazioni sul contesto d'utente al fine di scongiurarne la perdita in caso di riavvio degli application server oppure di aggiornamento applicativo.
 * La procedura non deve salvare informazioni sul file-system locale.
 * La procedura può salvare logs applicativi su file-system locale, ma deve essere all'occorrenza predisposta ad indirizzare questi logs verso un apposito log-server.
+
+L'applicazione deve essere progettata per funzionare correttamente anche in modalità di rilascio su cluster applicativo, in cui vengono dispiegate molteplici istanze degli application server, sia al fine di una distribuzione del carico applicativo che al fine di garantire l'alta affidabilità. In questo caso, l'applicazione deve tollerare una qualsiasi strategia di distribuzione del carico (per es. round-robin).
 
 ## Versionamento del codice
 
