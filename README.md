@@ -41,6 +41,10 @@ Nella realizzazione di funzionalità di reportistica applicativa, piuttosto che 
 * riduzione delle risorse di sviluppo necessarie alla realizzazione della reportistica;
 * disaccoppiamento delle funzionalità di analisi dei dati (OLAP) da quello della sua gestione dettagliata (OLTP), che scongiura un appesantimento del carico imposto al database applicativo.
 
+## Metodologie di sviluppo
+
+L'ambiente eterogeneo, altamente specialistico e fortemente dinamico che si configura nel CNVVF, impone l'utilizzo di metodologie agili per lo sviluppo applicativo. Si incoraggiano pertanto le tecniche di sviluppo [SOLID](https://en.wikipedia.org/wiki/SOLID), l'utilizzo del [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development), l'uso di sistemi di versionamento del codice evoluti, la continuous integration.
+
 ### Cloud-enabling
 
 Le applicazioni devono essere nativamente cloud-enabled. In particolare devono essere rispettati i seguenti requisiti.
@@ -49,12 +53,25 @@ Le applicazioni devono essere nativamente cloud-enabled. In particolare devono e
 * La procedura non deve salvare informazioni sul file-system locale.
 * La procedura può salvare logs applicativi su file-system locale, ma deve essere all'occorrenza predisposta ad indirizzare questi logs verso un apposito log-server.
 
-## Metodologie di sviluppo
+## Versionamento del codice
 
-L'ambiente eterogeneo, altamente specialistico e fortemente dinamico che si configura nel CNVVF, impone l'utilizzo di metodologie agili per lo sviluppo applicativo. Si incoraggiano pertanto le tecniche di sviluppo [SOLID](https://en.wikipedia.org/wiki/SOLID), l'utilizzo del Test Driven Development, l'uso di sistemi di versionamento del codice evoluti, la continuous integration.
+In ottemperanza all'Art. 69 del Codice dell'Amministrazione Digitale, vige l'obbligo per l'Amministrazione di rendere pubblicamente disponibile il codice sorgente dell'applicativo. [Come suggerito da AGID](https://lg-acquisizione-e-riuso-software-per-la-pa.readthedocs.io/it/latest/attachments/allegato-b-guida-alla-pubblicazione-open-source-di-software-realizzato-per-la-pa.html) è opportuno localizzare la repository del progetto su un portale di versionamento pubblico (GitHub, BitBucket, GitLab, ecc.). La licenza da adottare è preferibilmente è la [Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.en.html) (AGPL v3.0). In caso di motivate ragioni di ordine e sicurezza pubblica, o difesa nazionale, è possibile derogare a questa prescrizione.
 
-### Continuous integration
-Direttamente dalle prime fasi dello sviluppo applicativo, va definita una catena di continuous integration & delivery che attivi il deploy dell'applicativo in corrispondenza di commit su specifici branch del repository git utilizzato. Si incoraggia l'uso del [git-flow](https://it.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow), con la possibilità di definire, oltre ad un branch master, anche i branch test e demo per il deploy automatizzato sulle rispettive infrastrutture. L'infrastruttura di test deve essere considerata utile per svolgere un definitivo test di integrazione dell'applicativo prima di un rilascio in esercizio. L'infrastruttura demo è a tutti gli effetti un'infrastruttura di esercizio, dotata di requisiti di disponibilità analoghi all'infrastruttura di esercizio, che viene utilizzata principalmente a scopo dimostrativo delle funzionalità dell'applicativo e per finalità didattiche.
+Per ogni nuovo progetto di sviluppo, il CED del Dipartimento rende comunque disponibile un repository [git](https://it.wikipedia.org/wiki/Git_(software)) pubblico su un'installazione GitLab accessibile dalla rete dipartimentale. Il maintainer del progetto definirà il gruppo avente privilegi di commit sul repository. Il repository avrà almeno 3 differenti branch: master, develop, test. Questo repository sarà utilizzato per l'integrazione con le [funzionalità di automazione dei rilasci](#continuous-integration).
+
+Indipendentemente da quale sia il repository utilizzato, è necessario rimuovere dal codice sorgente qualsiasi password o certificato o altra credenziale relativa a sistemi reali (anche di test); a tale scopo si deve ricorrere a file di configurazione separati o a blacklist nel sistema di controllo di versione (ad esempio, il file .gitignore). Qualora si intenda integrare il repository con un meccanismo di deployment automatico e dunque si necessiti di mantenere delle credenziali, è possibile utilizzare i meccanismi sicuri di cifratura previsti per la piattaforma di code hosting e per i sistemi di continuous integration adottati (ad es. git-crypt).
+
+È importante verificare che non si siano depositate per errore tali credenziali (API keys, secrets, password, ecc.) all’interno del repository, non solo nella versione corrente ma anche in revisioni precedenti.
+
+Deve essere evitata se possibile la riscrittura di algoritmi già disponibili in librerie open source esterne (ad esempio: crittografia, sanitizzazione dell’input, protocolli di rete, parsing di XML o altri formati, gestione della memoria eccetera). L'uso di librerie standard, diffuse e aperte migliora la produttività, la correttezza e la manutenibilità del prodotto finale.
+
+Tutto il codice _morto_, ovvero non utilizzato, deve essere rimosso poiché potrebbe portare a confusione od essere considerato mantenuto ed erroneamente reintegrato senza i necessari controlli.
+
+## Continuous integration
+
+Per le applicazioni in architettura web da rilasciare all'utenza, va definita una catena (chain) di continuous integration & delivery che attivi il deploy dell'applicativo in corrispondenza di commit su specifici branch del repository git utilizzato. Si incoraggia l'uso del [git-flow](https://it.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow), con la possibilità di definire, oltre ad un branch master e develop, anche i branch test e demo per l'automazione dei rilasci sulle rispettive infrastrutture. L'infrastruttura di _test_ deve essere considerata utile per svolgere un definitivo test di integrazione dell'applicativo prima di un rilascio in esercizio. L'infrastruttura _demo_ è a tutti gli effetti un'infrastruttura di esercizio, dotata di requisiti di disponibilità analoghi all'infrastruttura di esercizio, che viene utilizzata principalmente a scopo dimostrativo delle funzionalità dell'applicativo e per finalità didattiche.
+
+Il commit su master attiva la chain di deploy sui server di produzione. Il commit su test attiva la chain di deploy sul server di test. Il commit sugli altri branch non attivano alcuna chain. Le chain di delivery devono clonare il repository, scaricare dai repository pubblici le necessarie librerie software e ricompilare seduta stante i sorgenti. Non sono accettabili deploy a partire da files binari. Durante il deploy, la chain deve eseguire anche i test di unità presenti nel progetto. Ogni progetto deve prevedere una suite di unit tests, che verranno eseguiti in fase di deploy per verificare la validità del codice. Ogni applicazione deve inoltre fornire uno o più handler http utili a verificare che, al termine del deploy, l'applicazione stia funzionando correttamente. Tali handler dovrebbero essere progettati per verificare il buon funzionamento di tutti i layer dell'architettura software (per es. interagendo esplicitamente anche con il database applicativo). Questi stessi handler, o comunque handler simili, vanno configurati anche per attivare le funzionalità di monitoraggio applicativo continuo. L'assenza di tali handler è deprecabile, dal momento che non sarebbe possibile monitorare con strumenti automatizzati, e pertanto con continuità, il buon funzionamento dell'applicativo.
 
 ## Linguaggi di sviluppo
 
@@ -103,19 +120,8 @@ Nel caso in cui l'applicazione esponga dati in forma dettagliata o sintetica, è
 
 Sulle procedure realizzate, preventivamente alla messa in esercizio, vengono eseguiti da parte dell'Ufficio per i Servizi Informatici penetration tests e vulnerability assessment, al fine di individuare vulnerabilità che possano compromettere i requisiti di disponibilità e riservatezza della procedura e dei dati da essa trattati.
 
-## Versionamento del codice
-
-Fin dalle prime fasi di sviluppo della procedura, e della annessa documentazione, va utilizzato il sistema di versionamento del codice GIT. In ottemperanza all'Art. 69 del Codice dell'Amministrazione Digitale, vige l'obbligo per l'Amministrazione di rendere pubblicamente disponibile il codice sorgente dell'applicativo. [Come suggerito da AGID](https://lg-acquisizione-e-riuso-software-per-la-pa.readthedocs.io/it/latest/attachments/allegato-b-guida-alla-pubblicazione-open-source-di-software-realizzato-per-la-pa.html) è opportuno localizzare la repository del progetto su un portale di versionamento pubblico (GitHub, BitBucket, GitLab, ecc.). La licenza da adottare è preferibilmente è la [Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.en.html) (AGPL v3.0). In alternativa, in caso di motivate ragioni di ordine e sicurezza pubblica, o difesa nazionale, l'Ufficio per i Servizi Informatici rende disponibile un sistema di versionamento GIT ad accesso controllato.
-
-Indipendentemente da quale sia il repository utilizzato, è necessario rimuovere dal codice sorgente qualsiasi password o certificato o altra credenziale relativa a sistemi reali (anche di test); a tale scopo si deve ricorrere a file di configurazione separati o a blacklist nel sistema di controllo di versione (ad esempio, il file .gitignore). Qualora si intenda integrare il repository con un meccanismo di deployment automatico e dunque si necessiti di mantenere delle credenziali, è possibile utilizzare i meccanismi sicuri di cifratura previsti per la piattaforma di code hosting e per i sistemi di continuous integration adottati (ad es. git-crypt).
-
-È importante verificare che non si siano depositate per errore tali credenziali (API keys, secrets, password, ecc.) all’interno del repository, non solo nella versione corrente ma anche in revisioni precedenti.
-
-Deve essere evitata se possibile la riscrittura di algoritmi già disponibili in librerie open source esterne (ad esempio: crittografia, sanitizzazione dell’input, protocolli di rete, parsing di XML o altri formati, gestione della memoria eccetera). L'uso di librerie standard, diffuse e aperte migliora la produttività, la correttezza e la manutenibilità del prodotto finale.
-
-Tutto il codice _morto_, ovvero non utilizzato, deve essere rimosso poiché potrebbe portare a confusione od essere considerato mantenuto ed erroneamente reintegrato senza i necessari controlli.
-
 ## Modello autorizzativo
+
 Le applicazioni utilizzate sul territorio devono considerare la strutturazione gerarchica del CNVVF, articolata su 4 livelli:
 
 * Livello radice
