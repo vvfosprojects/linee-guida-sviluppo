@@ -120,7 +120,7 @@ Le funzionalità di autenticazione applicativa (Authentication) vanno realizzate
 
 Nel caso in cui l'applicazione esponga dati in forma dettagliata o sintetica, è opportuno indicare la licenza con cui tali dati vengono distribuiti, privilegiando l'approccio [Open Data](https://www.dati.gov.it/), così come indicato da AGID.
 
-Sulle procedure realizzate, preventivamente alla messa in esercizio, vengono eseguiti da parte dell'Ufficio per i Servizi Informatici penetration tests e vulnerability assessment, al fine di individuare vulnerabilità che possano compromettere i requisiti di disponibilità e riservatezza della procedura e dei dati da essa trattati.
+Sulle procedure realizzate, preventivamente alla messa in esercizio, vengono eseguiti da parte dell'*Ufficio per le Tecnologie dell'Informazione e della Comunicazione* penetration test e vulnerability assessment, al fine di individuare vulnerabilità che possano compromettere i requisiti di disponibilità e riservatezza della procedura e dei dati da essa trattati.
 
 ## Modello autorizzativo
 
