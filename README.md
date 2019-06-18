@@ -90,7 +90,7 @@ Il backend deve essere realizzato conformemente al paradigma della programmazion
 
 * HTML/CSS
 * Bootstrap 4+
-* Angular 6+
+* Angular 8+
 * jQuery3+
 * JSF PrimeFaces
 
