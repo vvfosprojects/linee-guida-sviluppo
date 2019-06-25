@@ -137,7 +137,7 @@ Il principale vantaggio di un tale modello consiste nel non dover deputare un'un
 
 ## Documentazione applicativa
 
-Ogni procedura deve essere corredata dal relativo documento di procedura, secondo il modello realizzato dalla DCRLS/USI e disponibile all'indirizzo [http://intranet.dipvvf.it/linee-guida-sviluppo-applicativo](http://intranet.dipvvf.it/linee-guida-sviluppo-applicativo). Tale documento, in particolare, richiede di dettagliare i seguenti aspetti.
+Ogni procedura deve essere corredata dal relativo documento di procedura, secondo il modello realizzato dalla DCRLS/UTIC e disponibile all'indirizzo [http://intranet.dipvvf.it/linee-guida-sviluppo-applicativo](http://intranet.dipvvf.it/linee-guida-sviluppo-applicativo). Tale documento, in particolare, richiede di dettagliare i seguenti aspetti.
 
 * la descrizione delle funzionalità del sistema e dell'utenza alla quale si rivolge;
 * l'indicazione del livello di qualità del servizio ritenuto soddisfacente;
