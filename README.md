@@ -135,7 +135,7 @@ Le tecnologie database candidate all'utilizzo sono le seguenti.
 
 ### Database relazionali
 
-* Postgresql 9+
+* Postgresql 10+
 
 ### Database documentali
 
