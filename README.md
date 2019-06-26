@@ -73,13 +73,15 @@ Tutto il codice _morto_, ovvero non utilizzato, deve essere rimosso poiché potr
 
 Per le applicazioni in architettura web da rilasciare all'utenza, va definita una catena (chain) di continuous integration & delivery che attivi il deploy dell'applicativo in corrispondenza di commit su specifici branch del repository git utilizzato. Si incoraggia l'uso del [git-flow](https://it.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow), con la possibilità di definire, oltre ad un branch master e develop, anche i branch test e demo per l'automazione dei rilasci sulle rispettive infrastrutture. L'infrastruttura di _test_ deve essere considerata utile per svolgere un definitivo test di integrazione dell'applicativo prima di un rilascio in esercizio. L'infrastruttura _demo_ è a tutti gli effetti un'infrastruttura di esercizio, dotata di requisiti di disponibilità analoghi all'infrastruttura di esercizio, che viene utilizzata principalmente a scopo dimostrativo delle funzionalità dell'applicativo e per finalità didattiche.
 
-Il commit sul branch *master* attiva la chain di delivery sui server di produzione. Il commit sul branch *test* attiva la chain di delivery sul server di test. Il commit sul branch *demo* (ove presente) attiva la chain di delivery sul server demo. Il commit sugli altri branch non attivano alcuna chain. In occasione di un commit sulle chain di delivery, viene creato un clone del repository, vengono scaricate dai repository pubblici le necessarie librerie software e viene ricompilato il codice sorgente seduta stante. Non sono accettabili deploy a partire da files binari. Durante il deploy, vengono eseguiti anche i test di unità presenti nel progetto. Ogni progetto deve pertanto prevedere una suite di unit tests, che verranno eseguiti in fase di delivery per verificare la validità del codice. Ogni applicazione deve inoltre fornire uno o più handler http utili a verificare che, al termine del delivery, l'applicazione stia funzionando correttamente. Tali handler dovrebbero essere progettati per verificare il buon funzionamento di tutti i layer dell'architettura software (per es. interagendo esplicitamente anche con il database applicativo).
+Il commit sul branch *master* attiva la chain di delivery sui server di produzione. Il commit sul branch *test* attiva la chain di delivery sul server di test. Il commit sul branch *demo* (ove presente) attiva la chain di delivery sul server demo. Il commit sugli altri branch non attivano alcuna chain. In occasione di un commit sulle chain di delivery, viene creato un clone del repository, vengono scaricate dai repository pubblici le necessarie librerie software e viene ricompilato il codice sorgente seduta stante. Non sono accettabili deploy a partire da files binari. Durante il deploy, vengono eseguiti anche i test di unità presenti nel progetto. Ogni progetto deve pertanto prevedere una suite di unit tests, che verranno eseguiti in fase di delivery per verificare la validità del codice. Ogni applicazione deve inoltre fornire uno o più handler http utili a verificare che, al termine del delivery, l'applicazione stia funzionando correttamente, come descritto [qui](#monitoraggio-applicativo).
 
 ## Monitoraggio applicativo
 
-Similmente agli handler utili in fase di delivery per verificare il buon esito delle operazioni, vanno realizzati handler anche a supporto delle funzionalità di monitoraggio applicativo continuo. L'assenza di tali handler è deprecabile, dal momento che non sarebbe possibile monitorare con strumenti automatizzati, e pertanto con continuità, il buon funzionamento dell'applicativo. Ogni applicazione espone almeno l'handler `/api/healthcheck`.
+L'applicazione deve esporre degli handler http a supporto delle funzionalità di monitoraggio applicativo continuo. L'assenza di tali handler è deprecabile, dal momento che non sarebbe possibile monitorare con strumenti automatizzati, e pertanto con continuità, il buon funzionamento dell'applicativo. E' opportuno che gli handler verifichino il buon funzionamento di tutti i layer dell'architettura software (per es. interagendo esplicitamente anche con il database applicativo).
 
-L'invocazione di questo handler restituisce un codice http `200 OK` ed un Json. In caso di successo la risposta sarà così strutturata.
+Ogni applicazione deve esporre almeno l'handler `/api/healthcheck`.
+
+L'invocazione di questo handler restituisce un codice http `200 OK` ed un json. In caso di successo la risposta sarà così strutturata.
 
 ```json
 {
@@ -105,8 +107,6 @@ In caso di errore verrà restituito un codice http diverso da `2xx` o, nel caso 
   "description": "qui la descrizione dell'errore"
 }
 ```
-
-Non vi sono controindicazioni nel fatto che gli handler di monitoraggio applicativo siano gli stessi utilizzati a verificare il buon esito delle [operazioni di deploy](#continuous-integration).
 
 ## Linguaggi di sviluppo
 
