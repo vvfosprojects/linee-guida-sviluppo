@@ -2,7 +2,7 @@
 
 ## Introduzione
 
-Scopo di questa circolare è la diffusione di una serie di linee guida e metodologie, in allegato, a cui attenersi sistematicamente nell'ambito di qualsiasi attività di produzione di sistemi software condotte nell'ambito del Corpo Nazionale dei Vigili del Fuoco, che conferiscano soddisfacenti livelli di qualità, tra i quali in particolare: correttezza, efficienza, robustezza, sicurezza, uniformità ed integrabilità nelle infrastrutture istituzionali, manutenibilità, estensibilità, documentabilità, sostenibilità, ottemperanza alle normative vigenti in tema di sicurezza informatica.
+Scopo di questo documento è la diffusione di una serie di linee guida e metodologie a cui attenersi sistematicamente nell'ambito di qualsiasi attività di produzione di sistemi software condotte nell'ambito del Corpo Nazionale dei Vigili del Fuoco. Le linee guida sono progettate con l'obiettivo di conferire ai prodotti soddisfacenti livelli di qualità, tra i quali in particolare: correttezza, efficienza, robustezza, scalabilità, sicurezza, uniformità ed integrabilità nelle infrastrutture istituzionali, manutenibilità, estensibilità, documentabilità, sostenibilità, ottemperanza alle normative vigenti in tema di sicurezza informatica.
 
 ## Architetture applicativa e di sistema
 
@@ -12,6 +12,9 @@ Le procedure sono sviluppate in tecnologia Web e sono pertanto fruibili, senza l
 * Google Chrome
 * Opera
 * Safari
+* Microsoft Edge
+
+Non è richiesta la compatibilità con Internet Explorer.
 
 Vi può essere eventualmente la possibilità di avere un front-end basato su terminali mobili (per es. Android, iOS).
 
@@ -104,9 +107,12 @@ In caso di errore verrà restituito un codice http diverso da `2xx` o, nel caso 
 ```json
 {
   "state": "ERROR",
+  "errorCode": "CODE",
   "description": "qui la descrizione dell'errore"
 }
 ```
+
+`errorCode` indica un codice che identifica l'errore applicativo che si è verificato. Tale codice può essere utile in fase di diagnosi del problema.
 
 ## Linguaggi di sviluppo
 
@@ -117,17 +123,17 @@ Considerando che i linguaggi di sviluppo utilizzati hanno un forte impatto sui p
 Il backend deve essere realizzato conformemente al paradigma della programmazione orientata agli oggetti (OOP). I linguaggi da utilizzare sono i seguenti.
 
 * Java 8+ su application server Tomcat o WildFly
-* C# .NET Core 2.2+
+* C# net core 3.1+
 
 ### Frontend
 
 * HTML/CSS
 * Bootstrap 4+
-* Angular 8+
+* Angular 9+
 * jQuery3+
 * JSF PrimeFaces
 
-Possono essere considerate proposte di estensione della suddetta rosa di linguaggi di sviluppo. L'estensione deve comunque deve essere necessariamente supportata da specifiche attività di formazione a potenziamento delle competenze del Personale in forze al CNVVF.
+Possono essere considerate proposte di estensione della suddetta rosa di linguaggi di sviluppo. L'estensione deve comunque deve essere necessariamente supportata da specifiche attività di formazione a potenziamento delle competenze del Personale in forze al C.N.VV.F.
 
 ## Database
 
@@ -139,7 +145,7 @@ Le tecnologie database candidate all'utilizzo sono le seguenti.
 
 ### Database documentali
 
-* MongoDB 4+
+* MongoDB 4.2+
 
 ## Ricerca a testo libero (full-text search)
 
@@ -155,7 +161,7 @@ Le funzionalità di autenticazione applicativa (Authentication) vanno realizzate
 
 Nel caso in cui l'applicazione esponga dati in forma dettagliata o sintetica, è opportuno indicare la licenza con cui tali dati vengono distribuiti, privilegiando l'approccio [Open Data](https://www.dati.gov.it/), così come indicato da AGID.
 
-Sulle procedure realizzate, preventivamente alla messa in esercizio, vengono eseguiti da parte dell'*Ufficio per le Tecnologie dell'Informazione e della Comunicazione* penetration test e vulnerability assessment, al fine di individuare vulnerabilità che possano compromettere i requisiti di disponibilità e riservatezza della procedura e dei dati da essa trattati.
+Sulle procedure realizzate, preventivamente alla messa in esercizio, vengono eseguiti da parte dell'*Ufficio per le Tecnologie dell'Informazione e della Comunicazione* analisi statica del codice, penetration test e vulnerability assessment, al fine di individuare errori, vulnerabilità che possano compromettere i requisiti di disponibilità e riservatezza della procedura e dei dati da essa trattati.
 
 ## Modello autorizzativo
 
