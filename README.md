@@ -20,6 +20,8 @@ Vi può essere eventualmente la possibilità di avere un front-end basato su ter
 
 È da evitare l'installazione di componenti software o hardware presso le sedi territoriali. Non devono essere necessari privilegi di esecuzione elevati sui sistemi deputati all'esecuzione delle procedure.
 
+Per quanto riguarda le applicazioni web, è incoraggiato l'uso di un'architettura applicativa delle Single Page Application (SPA) che si integrano con un servizio di backend basato su protocollo REST. Tale architettura è illustrata [in questo documento](spa-architecture.md).
+
 ### Integrazione applicativa
 
 Deve essere sistematicamente realizzata l'integrazione con i sistemi istituzionali in tutti i casi di accesso a dati di competenza delle altre procedure; ciò vale in special modo per l'autenticazione dell'utente e per l'accesso alle anagrafiche dipartimentali (personale, mezzi, sedi di servizio, anagrafica territorio, ecc.). Detta integrazione è basata su servizi web, secondo il paradigma delle Service-Oriented Architectures (SOA). Se non esistenti, va concordato lo sviluppo dei web services utili ad una corretta integrazione applicativa. L'accesso ai servizi di integrazione deve essere incapsulato in apposite classi, al fine di variarne agevolmente l'implementazione a fronte di revisioni delle architetture applicative dipartimentali.
