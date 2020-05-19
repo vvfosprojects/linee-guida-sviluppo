@@ -10,6 +10,7 @@ L'architettura è illustrata nella figura seguente.
 * **4**: il database applicativo. Può essere un database relazionale o documentale (Postgres oppure MongoDB).
 * **5**: il server SMTP, utile laddove l'applicativo ha bisogno di fruire dei servizi di posta elettronica.
 * **6**: il browser dell'utente, tra quelli attualmente supportati.
+* **7**: è il single sign on dipartimentale. Si interfaccia con il browser dell'utente e con i moduli di backend, al fine di generare i componenti necessari a garantire l'autenticazione dell'utente (per es. JWT token). Le regole di autorizzazione, realizzate all'interno della logica applicativa, devono essere basate unicamente sull'autenticazione ottenuta mediante single sign on. 
 
 Il browser d'utente deve poter raggiungere indifferentemente le URL di frontend e di backend, per il tramite del reverse proxy. L'applicazione deve essere servita su connessione protetta SSL.
 
