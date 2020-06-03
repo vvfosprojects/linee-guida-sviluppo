@@ -160,6 +160,7 @@ Il software deve essere progettato secondo criteri che ne assicurino i requisiti
 Le applicazioni devono essere sviluppate nel rispetto delle [linee guida sulla sicurezza applicativa emanate da AGID](https://www.agid.gov.it/it/sicurezza/cert-pa/linee-guida-sviluppo-del-software-sicuro), seguendo l'impostazione _by-design_ e _by-default_, come suggerito dalla normativa EU/2016/679.
 
 Le funzionalità di autenticazione applicativa (Authentication) vanno realizzate mediante l'integrazione con il sistema Single-Sign-On dipartimentale, preferibilmente utilizzando il [CAS protocol v3](https://apereo.github.io/cas/5.2.x/protocol/CAS-Protocol.html). Le procedure non devono in nessun caso manipolare, o semplicemente ricevere, le credenziali dell'utente, neanche per la trasmissione a servizi terzi di autenticazione. L'autenticazione dell'utente alle differenti procedure, o web services da queste esposti, deve avvenire mediante uso di authentication-token (per es. JWT). Le funzionalità di autorizzazione (Authorization) devono essere basate esclusivamente sulle informazioni fornite dalla funzionalità di autenticazione.
+[CAS - Developer Reference](./cas-developer.md)
 
 Nel caso in cui l'applicazione esponga dati in forma dettagliata o sintetica, è opportuno indicare la licenza con cui tali dati vengono distribuiti, privilegiando l'approccio [Open Data](https://www.dati.gov.it/), così come indicato da AGID.
 
