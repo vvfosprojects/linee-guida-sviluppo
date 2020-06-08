@@ -1,12 +1,28 @@
 # CAS - DEVELOPER REFERENCE
 
-# 1 Introduzione
+# Indice
+
+[1 Introduzione](#1)
+
+[2 Federazione dei Servizi](#2)
+
+[3 Develop](#3)
+
+[4 Document Info](#4)
+
+---
+
+
+# 1 
+## Introduzione
 Il presente Developer Reference Document fornisce indicazioni agli sviluppatori che intendono federare un applicativo web integrando il sistema CAS Enterprise Single Sign-On, rilasciato all’indirizzo https://sso.vigilfuoco.it/cas-test/.
 
-## 1.1 Scopo del documento
+## 1.1 
+### Scopo del documento
 Lo scopo del documento è quello di illustrare agli sviluppatori, dopo una breve introduzione su come i servizi vengono aggiunti a CAS,  alcuni esempi di integrazione in diversi linguaggi di programmazione e diverse architetture software.
 
-## 1.2 Abbreviazioni e acronimi
+## 1.2 
+### Abbreviazioni e acronimi
 
 | Nome | Descrizione |
 | --- | ----- |
@@ -14,7 +30,8 @@ Lo scopo del documento è quello di illustrare agli sviluppatori, dopo una breve
 | JSON | JavaScript Object Notation |
 | JWT | JSON Web Token |
 
-## 1.3 Riferimenti
+## 1.3 
+### Riferimenti
 I file presenti tra i seguenti riferimenti sono allegati a questo documento.
 
 | # | Identificativo documento | Titolo |
@@ -26,7 +43,8 @@ I file presenti tra i seguenti riferimenti sono allegati a questo documento.
 | 5 | Central Authentication Service | https://en.wikipedia.org/wiki/Central_Authentication_Service |
 
 
-## 1.4 Glossario
+## 1.4 
+### Glossario
 
 | Nome | Descrizione |
 | --- | ----- |
@@ -36,9 +54,11 @@ I file presenti tra i seguenti riferimenti sono allegati a questo documento.
 
 ---
 
-# 2 Introduzione alla federazione di Servizi
+# 2 
+## Federazione dei Servizi
 
-## 2.1 Attuale configurazione Server CAS-Test
+## 2.1 
+### Attuale configurazione Server CAS-Test
 Di seguito le caratteristiche principali dell’applicativo CAS installato in ambiente di test
 - versione : 5.2.5
 - url : https://sso.vigilfuoco.it/cas-test/
@@ -47,7 +67,8 @@ Di seguito le caratteristiche principali dell’applicativo CAS installato in am
 
 
 
-## 2.2 Federazione di un servizio 
+## 2.2 
+### Federazione di un servizio 
 CAS mette a disposizione diverse modalità di configurazione dei servizi federati. Quella più rapida consiste nella creazione di un file JSON che contiene una serie di proprietà che servono a definire dettagli sul servizio che deve essere federato, le politiche di sicurezza, l’abilitazione o meno del servizio e così via. Vedi la lista completa nella documentazione ufficiale  
 Di seguito un esempio di file di configurazione per un applicativo:
 
@@ -73,7 +94,8 @@ La proprietà serviceId definita come una regex è riferita allo URL del Servizi
 I file JSON di configurazione vanno inseriti by default nella cartella src/main/resources/services o in un’altra cartella alias definita a priori nel file di configurazione di CAS.
 
 
-### 2.2.1 Dati richiesti per la federazione di un servizio
+### 2.2.1 
+#### Dati richiesti per la federazione di un servizio
 
 Per utilizzare CAS-TEST è necessario fornire al team di assistenza SSO:
 - Esempi URL applicazione 
@@ -83,7 +105,9 @@ Per utilizzare CAS-TEST è necessario fornire al team di assistenza SSO:
 
 
 
-## 2.3 Endpoints di login, validazione e logout
+## 2.3 
+### Endpoints di login, validazione e logout
+
 Per effettuare il login, in accordo con il CAS Browser Sequence Diagram, l’applicativo deve redirigere l’utente al seguente link (sempre prendendo in considerazione il servizio definito al paragrafo 2.2):
 - https://sso-vigilfuoco.it/cas-test/login?service=https://gifwf-test.dipvvf.it/callback 
 
@@ -97,12 +121,14 @@ L’endpoint di logout:
 - https://sso-vigilfuoco.it/cas-test/logout?service=https://gifwf-test.dipvvf.it/
 
 
-## 2.4 Utenti
+## 2.4 
+### Utenti
 Gli utenti possono effettuare il login utilizzando [nome].[cognome]@dipvvf.it oppure in alternativa utilizzare SPID.
 Le aziende esterne possono creare degli utenti al seguente link https://external-users-test.vigilfuoco.it/user/register
 
 
-## 2.5 Dati validazione
+## 2.5 
+### Dati validazione
 A seguito di validazione positiva il server CAS ritorna, in base all’autenticazione utilizzata, i seguenti dati (un esempio):
 
 ### Ticket ST 
@@ -160,12 +186,16 @@ attributes: {
 
 ---
 
-# 3 Develop
+# 3 
+## Develop
 
-## 3.1 Concetti preliminari
+## 3.1 
+### Concetti preliminari
 Nell’architettura CAS il Client è una applicazione web che interagirà con il Server CAS attraverso uno dei protocolli che il Server CAS implementa. Il protocollo attualmente implementato su CAS-TEST è CAS3. 
+Attenzione, CAS è un servizio di autenticazione. La profilazione autorizzativa degli utenti è, e rimane un processo interno all'applicazione sviluppata.
 
-## 3.2 Architetture software
+## 3.2 
+### Architetture software
 In base al tipo di architettura software utilizzata per sviluppare l’applicativo, MVC o di tipo App (frontend e backend disaccoppiati) è possibile utilizzare modalità differenti di validazione.
 
 Nelle applicazione MVC classiche il Client non appena ricevuto dal browser il Service Ticket (ST), che il Server CAS ha fornito a seguito del login, lo verifica sul Server CAS stesso per verificare l’attendibilità e riceve in caso di validazione positiva un XML (o JSON) contenente le informazioni su Principal/Attributes dell’utente loggato.
@@ -199,16 +229,20 @@ Nelle architetture di tipo App o SPA (mobile, Angular, react-native ecc) il flow
 
 
 
-## 3.3 Linee guida per gli sviluppatori
+## 3.3 
+### Linee guida per gli sviluppatori
 Per l’utilizzo del SSO dipartimentale una best practice è quella di inserire l’indirizzo URL del CAS, che viene utilizzato come prefisso nelle chiamate di login/validazione/logout, in una proprietà contenuta in un file di configurazione accessibile dai sistemisti, ad esempio all’interno del file application.properties in una applicazione JAVA.
 
-## 3.4 Esempi codice
+## 3.4 
+### Esempi codice
 Di seguito alcune librerie e snippets in vari linguaggi per l’integrazione dell’autenticazione SSO con CAS.
 
-### 3.4.1 Java
+### 3.4.1 
+#### Java
 Libreria PAC4J reperibile con esempi e casi d’uso su https://github.com/pac4j
 
-### 3.4.2 dot.net core
+### 3.4.2 
+#### dot.net core
 Snippet per la decodifica del JWS fornito da CAS-TEST
 
 ```csharp
@@ -241,7 +275,8 @@ public class Program
 }
 ```
 
-### 3.4.3 C#
+### 3.4.3
+#### C#
 Di seguito uno snippet fornito da II Claudino Di Ciocco
 ```csharp
 using System;
@@ -332,10 +367,19 @@ https://go.microsoft.com/fwlink/?LinkId=169433
 </configuration>
 ```
 
-### 3.4.4 PHP
+### 3.4.4 
+#### PHP
 Utilizzare la libreria jasig/phpcas disponibile su https://github.com/apereo/phpCAS.git
 
-# 4 Document Info
+[<<- Torna al menù](#Indice)
+
+---
+
+# 4 
+## Document Info
 **Isp. Inf. Giuseppe Gambino** [*giuseppe.gambino [@] vigilfuoco. it*]
 
-**Versione**  1.1.0
+**Versione**  1.2.0
+
+
+[<<- Torna al menù](#Indice)
