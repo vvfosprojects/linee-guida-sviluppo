@@ -41,6 +41,7 @@ I file presenti tra i seguenti riferimenti sono allegati a questo documento.
 | 3 | cas_flow_jwt_diagram | https://apereo.github.io/cas/6.1.x/installation/Configure-ServiceTicket-JWT.html#flow-diagram |
 | 4 | cas_proxy_flow_diagram | https://apereo.github.io/cas/6.1.x/protocol/CAS-Protocol.html#proxy-web-flow-diagram
 | 5 | Central Authentication Service | https://en.wikipedia.org/wiki/Central_Authentication_Service |
+| 6 | SAML2 protocol | https://apereo.github.io/cas/5.3.x/installation/Configuring-SAML2-Authentication.html |
 
 
 ## 1.4 
@@ -74,19 +75,19 @@ Di seguito un esempio di file di configurazione per un applicativo:
 
 ```JSON
 { 
-    "@class" : "org.apereo.cas.services.RegexRegisteredService",  
-    "serviceId" : "^https://gifwf-test.dipvvf.it/.*",  
-    "name" : "GIFTest",  
-    "id" : 100000061,  
-    "description" : "GIF WF Test Applications",  
-    "evaluationOrder" : 6, 
-    "accessStrategy" : {  
-        "@class" : "org.apereo.cas.services.DefaultRegisteredServiceAccessStrategy",  
-        "enabled" : true,  
-        "ssoEnabled" : true,  
-    },  
-    "logoutType" : "BACK_CHANNEL",  
-    "logoutUrl" : "https://gifwf-test.dipvvf.it/GIF/logout" 
+    "@class" : "org.apereo.cas.services.RegexRegisteredService", 
+    "serviceId" : "^https://gifwf-test.dipvvf.it/.*", 
+    "name" : "GIFTest", 
+    "id" : 100000061, 
+    "description" : "GIF WF Test Applications", 
+    "evaluationOrder" : 6,
+    "accessStrategy" : { 
+        "@class" : "org.apereo.cas.services.DefaultRegisteredServiceAccessStrategy", 
+        "enabled" : true, 
+        "ssoEnabled" : true, 
+    }, 
+    "logoutType" : "BACK_CHANNEL", 
+    "logoutUrl" : "https://gifwf-test.dipvvf.it/GIF/logout"
 }
 ```
 
